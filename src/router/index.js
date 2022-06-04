@@ -144,7 +144,7 @@ const BoxedImage2 = () => import("@/views/pages/boxed/Image2.vue")
 const router = new Router({
   linkActiveClass: 'active',
   linkExactActiveClass: '',
-  scrollBehavior () {
+  scrollBehavior() {
     return { x: 0, y: 0 }
   },
   routes: [
@@ -302,7 +302,7 @@ const router = new Router({
           path: 'blocks',
           redirect: '/blocks/styles',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -336,7 +336,7 @@ const router = new Router({
           path: 'elements',
           redirect: '/elements/grid',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -440,7 +440,7 @@ const router = new Router({
           path: 'tables',
           redirect: '/tables/styles',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -474,7 +474,7 @@ const router = new Router({
           path: 'forms',
           redirect: '/forms/elements',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -518,7 +518,7 @@ const router = new Router({
           path: 'plugins',
           redirect: '/plugins/charts',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -572,7 +572,7 @@ const router = new Router({
           path: 'layout',
           redirect: '/layout/api',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -671,7 +671,7 @@ const router = new Router({
           path: 'pages/generic',
           redirect: '/pages/generic/blank',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -710,7 +710,7 @@ const router = new Router({
           path: 'pages/auth',
           redirect: '/pages/auth/all',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -724,7 +724,7 @@ const router = new Router({
           path: 'pages/errors',
           redirect: '/pages/errors/all',
           component: {
-            render (c) { return c('router-view') }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -736,7 +736,7 @@ const router = new Router({
         }
       ]
     }
-    
+
   ]
 })
 
@@ -745,10 +745,10 @@ import store from '@/store';
 
 router.beforeEach((to, from, next) => {
   store.dispatch("setToken", localStorage.getItem("token"))
-  if(to.name === "signIn" && !store.state.token) return next()
-  if(!store.state.token) return router.push({name: "signIn"})
-  
- 
+  if (to.name === "signIn" && !store.state.token) return next()
+  if (!store.state.token) return router.push({ name: "signIn" })
+
+
 
 
   next()

@@ -1,5 +1,5 @@
 {
-  "name": "oneui-vue-edition",
+  "name": "administrator-ui",
   "version": "1.2.0",
   "private": true,
   "scripts": {
@@ -30,6 +30,7 @@
     "bootstrap-vue": "^2.9.0",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.4",
+    "fibers": "^5.0.1",
     "lodash": "^4.17.20",
     "simplebar-vue": "^1.4.0",
     "vue": "^2.6.11",
@@ -59,7 +60,6 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-vue": "^6.2.2",
-    "fibers": "^4.0.0",
     "sass": "^1.26.3",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"

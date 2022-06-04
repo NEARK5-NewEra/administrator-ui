@@ -152,7 +152,7 @@
 											class="col-11"
 											input-id="tags-basic"
 											v-model="form.default_spec.images"
-											placeholder="Add Images ..."
+											placeholder="Add Images in here ..."
 										></b-form-tags>
 										<b-button
 											variant="secondary"
@@ -998,7 +998,7 @@
 											class="col-11"
 											input-id="tags-basic"
 											v-model="form.default_spec.images"
-											placeholder="Add Images ..."
+											placeholder="Add Images there..."
 										></b-form-tags>
 										<b-button
 											variant="secondary"

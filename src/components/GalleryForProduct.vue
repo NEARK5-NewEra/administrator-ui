@@ -67,8 +67,8 @@
           </b-col>
         </b-row>
         <b-row >
-          <b-button  variant="alt-success"
-            >Import Images</b-button
+          <b-button  @click="handleAddImage" variant="alt-success"
+            >add image</b-button
           >
         </b-row>
       </base-block>
@@ -218,6 +218,24 @@ export default {
     this.fetchImages();
   },
   methods: {
+    handleAddImage() {
+      // console.log("this.props.chosenImages",this.chunkedPhotos[this.currentPage - 1], this.imagesSelected, this.chosenImages);
+      // for (let image in this.chunkedPhotos[this.currentPage - 1]) {
+      //    console.log("image::: ",this.imagesSelected);
+      //   if (this.imagesSelected[image.name] == true) {
+          
+      //     //  this.props.chosenImages.push(image.name);
+      //     //  console.log("this.props.chosenImages", this.props.chosenImages);
+      //   }
+      // }
+      forIn(this.imagesSelected, (value, key) => {
+        if (value === true) {
+          this.chosenImages.push(key);
+        }
+      });
+      console.log("result::: ",this.chosenImages);
+       this.$bvModal.hide("modal-add-images");
+    },
     onPageChanged(page) {
       // this.paginate(this.perPage, page - 1);
       this.currentPage = page;

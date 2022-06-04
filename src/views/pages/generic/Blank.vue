@@ -507,7 +507,7 @@ export default {
             
           ],
           operating_system: ["Windows 10", "Ubuntu"],
-          images: [],
+          images: ["image-1605759489102.jpg"],
           description:
             "",
           quantity: 0,
