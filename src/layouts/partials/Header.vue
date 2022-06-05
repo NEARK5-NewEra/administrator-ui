@@ -92,7 +92,7 @@
           <!-- Search Form (visible on larger screens) -->
           <b-form @submit.stop.prevent="onSubmit" class="d-none d-sm-inline-block">
             <b-input-group size="sm">
-              <b-form-input placeholder="Search.." v-model="baseSearchTerm" class="form-control-alt"></b-form-input>
+              <b-form-input placeholder="Search...." v-model="baseSearchTerm" class="form-control-alt"></b-form-input>
               <b-input-group-append>
                 <span class="input-group-text bg-body border-0">
                   <i class="si si-magnifier"></i>
@@ -100,14 +100,25 @@
               </b-input-group-append>
             </b-input-group>
           </b-form>
+            
           <!-- END Search Form -->
         </div>
         <!-- END Left Section -->
-
+        <div class="d-flex align-items-center">  
+          <b-button v-if="!this.window.walletConnection.isSignedIn()" pill class="d-none d-sm-inline-block ml-1 border-variant" variant="light" size="sm" @click="login()" > connect wallet</b-button>          
+          <div v-else class="d-flex align-items-center">
+           <span class="d-none d-sm-inline-block ml-1">{{this.window.accountId}} !</span>
+            <b-button pill class="d-none d-sm-inline-block ml-1 border-variant" variant="light" size="sm" @click="logout()">Logout</b-button>          
+          </div>
+   
+  
+        </div>  
         <!-- Right Section -->
         <div class="d-flex align-items-center">
           <!-- User Dropdown -->
           <b-dropdown size="sm" variant="dual" class="d-inline-block ml-2" menu-class="p-0 border-0 font-size-sm" right no-caret>
+            
+      
             <template #button-content>
               <img class="rounded" src="img/avatars/avatar10.jpg" alt="Header Avatar" style="width: 18px;">
               <span class="d-none d-sm-inline-block ml-1">{{currentUser.username}}</span>
@@ -234,6 +245,7 @@
 
 <script>
 import { mapActions, mapState} from 'vuex';
+import { get_payment_shop_info, login, logout } from "../../utils"
 export default {
   name: 'BaseHeader',
   props: {
@@ -241,6 +253,7 @@ export default {
   },
   data () {
     return {
+      window:{},
       baseSearchTerm: '',
       notifications: [
         {
@@ -282,12 +295,26 @@ export default {
       ]
     }
   },
+  created() {
+     window.walletConnection.isSignedIn()
+    this.window = window;
+    console.log(window)
+  },
   computed:{
     ...mapState("authentication",{"currentUser":"currentUser"})
   },
   methods: {
     onSubmit () {
       this.$router.push('/backend/pages/generic/search?' + this.baseSearchTerm)
+    },
+    login() {
+      login()
+    },
+    logout() {
+      logout()
+    },
+    getPaymentInfo() {
+      get_payment_shop_info()
     },
     eventHeaderSearch (event) {
       // When ESCAPE key is hit close the header search section

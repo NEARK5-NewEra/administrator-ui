@@ -8,7 +8,7 @@ import Router from 'vue-router'
 
 // Main layouts
 import LayoutBackend from '@/layouts/variations/Backend.vue'
-import LayoutBackendBoxed from '@/layouts/variations/BackendBoxed.vue'
+// import LayoutBackendBoxed from '@/layouts/variations/BackendBoxed.vue'
 import LayoutSimple from '@/layouts/variations/Simple.vue'
 
 // Register Vue Router
@@ -16,7 +16,7 @@ Vue.use(Router)
 
 
 // Frontend: Landing
-const Landing = () => import("@/views/Landing.vue")
+// const Landing = () => import("@/views/Landing.vue")
 
 // Backend: General
 const Dashboard = () => import(/* webpackChunkName: "pages-dashboard", webpackPrefetch: true */"@/views/Dashboard.vue")
@@ -133,12 +133,12 @@ const Errors500 = () => import("@/views/pages/errors/500.vue")
 const Errors503 = () => import("@/views/pages/errors/503.vue")
 
 // Pages: Boxed Backend
-const BoxedDashboard = () => import(/* webpackChunkName: "pages-boxed-dashboard" */"@/views/pages/boxed/Dashboard.vue")
-const BoxedSearch = () => import("@/views/pages/boxed/Search.vue")
-const BoxedSimple1 = () => import("@/views/pages/boxed/Simple1.vue")
-const BoxedSimple2 = () => import("@/views/pages/boxed/Simple2.vue")
-const BoxedImage1 = () => import("@/views/pages/boxed/Image1.vue")
-const BoxedImage2 = () => import("@/views/pages/boxed/Image2.vue")
+// const BoxedDashboard = () => import(/* webpackChunkName: "pages-boxed-dashboard" */"@/views/pages/boxed/Dashboard.vue")
+// const BoxedSearch = () => import("@/views/pages/boxed/Search.vue")
+// const BoxedSimple1 = () => import("@/views/pages/boxed/Simple1.vue")
+// const BoxedSimple2 = () => import("@/views/pages/boxed/Simple2.vue")
+// const BoxedImage1 = () => import("@/views/pages/boxed/Image1.vue")
+// const BoxedImage2 = () => import("@/views/pages/boxed/Image2.vue")
 
 // Router Configuration
 const router = new Router({
@@ -150,12 +150,12 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      component: LayoutSimple,
+      component: LayoutBackend,
       children: [
         {
           path: '/',
           name: 'Home',
-          component: Landing
+          component: Dashboard
         },
         {
           path: 'maintenance',
@@ -171,7 +171,95 @@ const router = new Router({
           path: 'coming-soon',
           name: 'Pages Various Coming Soon',
           component: PagesVariousComingSoon
-        }
+        },
+        {
+          path: 'plugins',
+          // redirect: '/plugins/charts',
+          component: {
+            render(c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: 'image-cropper',
+              name: 'Image Cropper',
+              component: PluginsImageCropper
+            },
+            {
+              path: 'charts',
+              name: 'Charts',
+              component: PluginsCharts
+            },
+            {
+              path: 'calendar',
+              name: 'Calendar',
+              component: PluginsCalendar
+            },
+            {
+              path: 'carousel',
+              name: 'Carousel',
+              component: PluginsCarousel
+            },
+            {
+              path: 'syntax-highlighting',
+              name: 'Syntax Hightlighting',
+              component: PluginsSyntaxHighlighting
+            },
+            {
+              path: 'rating',
+              name: 'Rating',
+              component: PluginsRating
+            },
+            {
+              path: 'dialogs',
+              name: 'Dialogs',
+              component: PluginsDialogs
+            },
+            {
+              path: 'notifications',
+              name: 'Notifications',
+              component: PluginsNotifications
+            },
+            {
+              path: 'gallery',
+              name: 'Gallery',
+              component: PluginsGallery
+            }
+          ]
+        },
+        {
+          path: 'tables',
+          redirect: '/tables/styles',
+          component: {
+            render(c) { return c('router-view') }
+          },
+          children: [
+            {
+              path: 'styles',
+              name: 'Tables Styles',
+              component: TablesStyles
+            },
+            {
+              path: 'user',
+              name: 'Tables User',
+              component: TablesUser
+            },
+            {
+              path: 'product',
+              name: 'Tables Product',
+              component: TablesProduct
+            },
+            {
+              path: 'orders',
+              name: 'Tables Orders',
+              component: TablesOrder
+            },
+            {
+              path: 'pricing',
+              name: 'Tables Princing',
+              component: TablesPricing
+            }
+          ]
+        },
       ]
     },
     {
@@ -249,45 +337,46 @@ const router = new Router({
           name: 'Error 503',
           component: Errors503
         }
+
       ]
     },
-    {
-      path: '/backend-boxed',
-      redirect: '/backend-boxed/dashboard',
-      component: LayoutBackendBoxed,
-      children: [
-        {
-          path: 'dashboard',
-          name: 'Boxed Dashboard',
-          component: BoxedDashboard
-        },
-        {
-          path: 'search',
-          name: 'Boxed Search',
-          component: BoxedSearch
-        },
-        {
-          path: 'simple1',
-          name: 'Boxed Simple1',
-          component: BoxedSimple1
-        },
-        {
-          path: 'simple2',
-          name: 'Boxed Simple2',
-          component: BoxedSimple2
-        },
-        {
-          path: 'image1',
-          name: 'Boxed Image1',
-          component: BoxedImage1
-        },
-        {
-          path: 'image2',
-          name: 'Boxed Image2',
-          component: BoxedImage2
-        }
-      ]
-    },
+    // {
+    //   path: '/backend-boxed',
+    //   redirect: '/backend-boxed/dashboard',
+    //   component: LayoutBackendBoxed,
+    //   children: [
+    //     {
+    //       path: 'dashboard',
+    //       name: 'Boxed Dashboard',
+    //       component: BoxedDashboard
+    //     },
+    //     {
+    //       path: 'search',
+    //       name: 'Boxed Search',
+    //       component: BoxedSearch
+    //     },
+    //     {
+    //       path: 'simple1',
+    //       name: 'Boxed Simple1',
+    //       component: BoxedSimple1
+    //     },
+    //     {
+    //       path: 'simple2',
+    //       name: 'Boxed Simple2',
+    //       component: BoxedSimple2
+    //     },
+    //     {
+    //       path: 'image1',
+    //       name: 'Boxed Image1',
+    //       component: BoxedImage1
+    //     },
+    //     {
+    //       path: 'image2',
+    //       name: 'Boxed Image2',
+    //       component: BoxedImage2
+    //     }
+    //   ]
+    // },
     {
       path: '/backend',
       redirect: '/backend/dashboard',
@@ -436,40 +525,40 @@ const router = new Router({
             }
           ]
         },
-        {
-          path: 'tables',
-          redirect: '/tables/styles',
-          component: {
-            render(c) { return c('router-view') }
-          },
-          children: [
-            {
-              path: 'styles',
-              name: 'Tables Styles',
-              component: TablesStyles
-            },
-            {
-              path: 'user',
-              name: 'Tables User',
-              component: TablesUser
-            },
-            {
-              path: 'product',
-              name: 'Tables Product',
-              component: TablesProduct
-            },
-            {
-              path: 'orders',
-              name: 'Tables Orders',
-              component: TablesOrder
-            },
-            {
-              path: 'pricing',
-              name: 'Tables Princing',
-              component: TablesPricing
-            }
-          ]
-        },
+        // {
+        //   path: 'tables',
+        //   redirect: '/tables/styles',
+        //   component: {
+        //     render(c) { return c('router-view') }
+        //   },
+        //   children: [
+        //     {
+        //       path: 'styles',
+        //       name: 'Tables Styles',
+        //       component: TablesStyles
+        //     },
+        //     {
+        //       path: 'user',
+        //       name: 'Tables User',
+        //       component: TablesUser
+        //     },
+        //     {
+        //       path: 'product',
+        //       name: 'Tables Product',
+        //       component: TablesProduct
+        //     },
+        //     {
+        //       path: 'orders',
+        //       name: 'Tables Orders',
+        //       component: TablesOrder
+        //     },
+        //     {
+        //       path: 'pricing',
+        //       name: 'Tables Princing',
+        //       component: TablesPricing
+        //     }
+        //   ]
+        // },
         {
           path: 'forms',
           redirect: '/forms/elements',
@@ -514,60 +603,60 @@ const router = new Router({
             }
           ]
         },
-        {
-          path: 'plugins',
-          redirect: '/plugins/charts',
-          component: {
-            render(c) { return c('router-view') }
-          },
-          children: [
-            {
-              path: 'image-cropper',
-              name: 'Image Cropper',
-              component: PluginsImageCropper
-            },
-            {
-              path: 'charts',
-              name: 'Charts',
-              component: PluginsCharts
-            },
-            {
-              path: 'calendar',
-              name: 'Calendar',
-              component: PluginsCalendar
-            },
-            {
-              path: 'carousel',
-              name: 'Carousel',
-              component: PluginsCarousel
-            },
-            {
-              path: 'syntax-highlighting',
-              name: 'Syntax Hightlighting',
-              component: PluginsSyntaxHighlighting
-            },
-            {
-              path: 'rating',
-              name: 'Rating',
-              component: PluginsRating
-            },
-            {
-              path: 'dialogs',
-              name: 'Dialogs',
-              component: PluginsDialogs
-            },
-            {
-              path: 'notifications',
-              name: 'Notifications',
-              component: PluginsNotifications
-            },
-            {
-              path: 'gallery',
-              name: 'Gallery',
-              component: PluginsGallery
-            }
-          ]
-        },
+        // {
+        //   path: 'plugins',
+        //   redirect: '/plugins/charts',
+        //   component: {
+        //     render(c) { return c('router-view') }
+        //   },
+        //   children: [
+        //     {
+        //       path: 'image-cropper',
+        //       name: 'Image Cropper',
+        //       component: PluginsImageCropper
+        //     },
+        //     {
+        //       path: 'charts',
+        //       name: 'Charts',
+        //       component: PluginsCharts
+        //     },
+        //     {
+        //       path: 'calendar',
+        //       name: 'Calendar',
+        //       component: PluginsCalendar
+        //     },
+        //     {
+        //       path: 'carousel',
+        //       name: 'Carousel',
+        //       component: PluginsCarousel
+        //     },
+        //     {
+        //       path: 'syntax-highlighting',
+        //       name: 'Syntax Hightlighting',
+        //       component: PluginsSyntaxHighlighting
+        //     },
+        //     {
+        //       path: 'rating',
+        //       name: 'Rating',
+        //       component: PluginsRating
+        //     },
+        //     {
+        //       path: 'dialogs',
+        //       name: 'Dialogs',
+        //       component: PluginsDialogs
+        //     },
+        //     {
+        //       path: 'notifications',
+        //       name: 'Notifications',
+        //       component: PluginsNotifications
+        //     },
+        //     {
+        //       path: 'gallery',
+        //       name: 'Gallery',
+        //       component: PluginsGallery
+        //     }
+        //   ]
+        // },
         {
           path: 'layout',
           redirect: '/layout/api',

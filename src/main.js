@@ -23,7 +23,7 @@ import BaseNavigation from '@/components/BaseNavigation'
 // Custom directives
 import clickRipple from '@/directives/clickRipple'
 import toggleClass from '@/directives/toggleClass'
-
+import { initContract } from './utils'
 // Register global plugins
 Vue.use(BootstrapVue)
 
@@ -41,9 +41,16 @@ Vue.directive('toggle-class', toggleClass)
 // Disable tip shown in dev console when in development mode
 Vue.config.productionTip = false
 
+
 // Craft new application
-new Vue({
-  store,
-  router,
-  render: h => h(App)
-}).$mount('#app')
+window.nearInitPromise = initContract()
+  .then(() => {
+    console.log("initial");
+    new Vue({
+      store,
+      router,
+      render: h => h(App)
+    }).$mount('#app')
+  })
+  .catch(console.error)
+

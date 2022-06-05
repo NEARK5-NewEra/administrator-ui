@@ -466,7 +466,7 @@ export default new Vuex.Store({
     token: null,
     // App vital details
     app: {
-      name: "Admin by Hwi",
+      name: "Admin by WuanSan",
       version: process.env.PACKAGE_VERSION,
       copyright: helpers.getCurrentYear()
     },
